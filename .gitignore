@@ -1,0 +1,95 @@
+# Arquivo .gitignore para projeto Django
+
+# Dependências Python
+venv/
+env/
+ENV/
+.env
+.venv/
+venv*/
+env*/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# Ambiente virtual do Pipenv
+Pipfile.lock
+.python-version
+
+# Ambiente virtual do Poetry
+poetry.lock
+
+# Banco de dados
+*.sqlite3
+*.db
+*.sql
+*.mdb
+
+# Arquivos de desenvolvimento do Django
+db.sqlite3
+*.log
+logs/
+*.pot
+
+# Arquivos estáticos coletados
+staticfiles/
+mediafiles/
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Arquivos do sistema
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Arquivos de cache
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# Arquivos de cobertura
+.coverage
+htmlcov/
+.coverage.*
+
+# Arquivos de pacotes
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# Arquivos de documentação
+docs/_build/
+
+# Configurações locais
+local_settings.py
+settings/local.py
+
+# Arquivos temporários
+temp/
+tmp/
+
+# Logs
+*.log
+
+# TXT files
+*.txt

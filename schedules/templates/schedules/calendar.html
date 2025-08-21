@@ -1,0 +1,46 @@
+
+{% extends "schedules/base.html" %}
+
+
+{% block content %}
+<div class="calendar">
+    <h1>Calendário</h1>
+    <p>Visualize os eventos do mês selecionado.</p>
+<div class="calendar-navigation">
+    <a href="?year={{ prev_year }}&month={{ prev_month }}" class="btn btn-primary">Voltar</a>
+    <h2>{{ month_name }} {{ year }}</h2>
+    <a href="?year={{ next_year }}&month={{ next_month }}" class="btn btn-secondary">Próximo</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Seg</th>
+            <th>Ter</th>
+            <th class="special-day">Qua</th>
+            <th>Qui</th>
+            <th>Sex</th>
+            <th class="special-day">Sáb</th>
+            <th class="special-day">Dom</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for week in weeks %}
+            <tr>
+                {% for day in week %}
+                    <td>
+                        {% if day > 0 %}
+                        
+                        <a href="{% url 'schedules:music' year=year month=month day=day %}">
+                            <div class="day-content">
+                                {{ day }}
+                            </div>
+                        </a>
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>        
+</table>
+{% endblock %}

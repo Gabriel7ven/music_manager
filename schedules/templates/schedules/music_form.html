@@ -1,0 +1,18 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary" value="Submit">Enviar</button>
+</form>
+
+<h1>testee</h1>
+
+{% for music in musics %}
+    <div class="music-item">
+        <strong>{{ music.music_name }}</strong> - 
+        Momento: {{ music.moment }} - 
+        Referência: {{ music.reference }} - 
+        Número: {{ music.number }}
+    </div>
+{% empty %}
+    <div>Nenhuma música cadastrada para este dia.</div>
+{% endfor %}

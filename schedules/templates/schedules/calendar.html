@@ -32,9 +32,17 @@
                         {% if day > 0 %}
                         
                         <a href="{% url 'schedules:music' year=year month=month day=day %}">
-                            <div class="day-content">
-                                {{ day }}
-                            </div>
+                            
+                            {% if day in musics_month %}
+                                <div class="day-fullfilled">
+                                    {{ day }}
+                                </div>
+                            {% else %}
+                                <div class="day-content">
+                                    {{ day }}
+                                </div>
+                            {% endif %}
+                            
                         </a>
                         {% endif %}
                     </td>

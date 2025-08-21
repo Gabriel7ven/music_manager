@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import datetime
 import calendar
 from django.http import HttpResponseRedirect, HttpResponse
 
 
-from .forms import ContactForm, MusicForm
+from .forms import ContactForm, MusicForm, UpdateForm
 from django.core.mail import send_mail
 
 from .models import Music
@@ -15,10 +15,20 @@ def index(request):
     return render(request, "schedules/index.html")
 
 def get_calendar(request):
+    """Renderiza o calendário do mês atual ou o mês especificado na URL."""
     # Obter parâmetros da URL ou usar a data atual
     year = int(request.GET.get('year', datetime.datetime.now().year))
     month = int(request.GET.get('month', datetime.datetime.now().month))
     
+    musics_month = Music.objects.filter(sing_date__year=year,sing_date__month=month).order_by('sing_date', 'moment')
+    
+    musicas_por_data = []
+    for music in musics_month:
+        data_str = music.sing_date.strftime('%d')
+        if data_str not in musicas_por_data:
+            musicas_por_data.append(int(data_str))
+
+        
     # Validar os valores
     if month < 1:
         month = 12
@@ -46,6 +56,7 @@ def get_calendar(request):
         'prev_year': prev_year,
         'next_month': next_month,
         'next_year': next_year,
+        'musics_month': musicas_por_data,
     }
     
     return render(request, "schedules/calendar.html", context)
@@ -95,10 +106,10 @@ def get_music(request, year, month, day):
             
             # Criar e salvar a música com a data correta
             Music.objects.create(
-                music_name=music_name,
-                reference=reference,
+                music_name=music_name.upper(),
+                reference=reference.upper(),
                 number=number,
-                moment=moment,
+                moment=moment.upper(),
                 sing_date=sing_date
             )
             
@@ -125,3 +136,27 @@ def get_music(request, year, month, day):
         'month': month,
         'year': year
     })
+    
+
+
+def update(request, music_id):
+    music = get_object_or_404(Music, pk=music_id)
+    if request.method == 'POST':
+        form = UpdateForm(request.POST)
+        if form.is_valid():
+            music.music_name = form.cleaned_data['music_name'].upper()
+            music.reference = form.cleaned_data['reference'].upper()
+            music.number = form.cleaned_data['number']
+            music.moment = form.cleaned_data['moment'].upper()
+            music.save()
+            return HttpResponseRedirect(f"/schedules/music/{music.sing_date.year}/{music.sing_date.month}/{music.sing_date.day}")
+        
+    else:
+        data = {
+            'music_name': music.music_name,
+            'reference': music.reference,
+            'number': music.number,
+            'moment': music.moment,
+        }
+        form = UpdateForm(data)    
+    return render(request, 'schedules/update.html', {'form': form})

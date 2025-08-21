@@ -1,17 +1,22 @@
 <form method="post">
     {% csrf_token %}
     {{ form }}
-    <button type="submit" class="btn btn-primary" value="Submit">Enviar</button>
+    <button type="submit" class="btn btn-primary" value="Submit">Adicionar</button>
 </form>
 
-<h1>testee</h1>
+
 
 {% for music in musics %}
     <div class="music-item">
-        <strong>{{ music.music_name }}</strong> - 
-        Momento: {{ music.moment }} - 
-        Referência: {{ music.reference }} - 
-        Número: {{ music.number }}
+        <strong>{{ music.get_moment_name }}</strong> -
+        {{ music.music_name }} |
+        {{ music.reference }} 
+        {% if music.number > 0 %}
+         n° 
+        {{ music.number }}
+        {% endif %}
+        <a href="{% url 'schedules:update' music.id %}">Update</a>
+
     </div>
 {% empty %}
     <div>Nenhuma música cadastrada para este dia.</div>

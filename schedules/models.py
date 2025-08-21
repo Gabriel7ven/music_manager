@@ -11,6 +11,7 @@ class Music(models.Model):
         '4': 'ARCA DE ORACAO',
         '5': 'DISPERSAO DAS CLASSES',       
         '6': 'DESPEDIDA',
+        '7': 'HINO FINAL',
     }
     
         

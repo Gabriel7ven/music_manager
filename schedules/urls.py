@@ -9,4 +9,5 @@ urlpatterns = [
     path("contact/", views.get_name, name='contact'),
     path("music/<int:year>/<int:month>/<int:day>", views.get_music, name='music'),
     path("update/<int:music_id>/", views.update, name='update'),
+    path("delete/<int:music_id>/", views.delete_music, name='delete_music'),
 ]

@@ -1,11 +1,15 @@
+{% extends "schedules/base.html" %}
+
+
+{% block content %}
 <form method="post">
     {% csrf_token %}
     {{ form }}
-    <button type="submit" class="btn btn-primary" value="Submit">Adicionar</button>
+    <button type="submit" class="btn btn-primary" value="Submit">Alterar</button>
 </form>
 
 <h1>Update Form</h1>
-
+{% endblock %}
 
 
 

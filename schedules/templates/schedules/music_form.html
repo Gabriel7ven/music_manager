@@ -1,3 +1,7 @@
+{% extends "schedules/base.html" %}
+
+
+{% block content %}
 <form method="post">
     {% csrf_token %}
     {{ form }}
@@ -15,9 +19,11 @@
          n° 
         {{ music.number }}
         {% endif %}
-        <a href="{% url 'schedules:update' music.id %}">Update</a>
+        <a href="{% url 'schedules:update' music.id %}">✏️ Alterar</a>
+        <a href="{% url 'schedules:delete_music' music.id %}">❌ Deletar</a>
 
     </div>
 {% empty %}
     <div>Nenhuma música cadastrada para este dia.</div>
 {% endfor %}
+{% endblock %}

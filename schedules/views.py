@@ -160,3 +160,14 @@ def update(request, music_id):
         }
         form = UpdateForm(data)    
     return render(request, 'schedules/update.html', {'form': form})
+
+
+def delete_music(request, music_id):
+    music = get_object_or_404(Music, pk=music_id)
+    # if request.method == 'POST':
+    #     music.delete()
+    #     return HttpResponseRedirect(f"/schedules/music/{music.sing_date.year}/{music.sing_date.month}/{music.sing_date.day}")
+    music.delete()
+    # Redirecionar para a página de músicas do dia após a exclusão
+    return HttpResponseRedirect(f"/schedules/music/{music.sing_date.year}/{music.sing_date.month}/{music.sing_date.day}")
+    

@@ -1,6 +1,10 @@
+{% extends "schedules/base.html" %}
+
+
+{% block content %}
 <form method="post">
     {% csrf_token %}
     {{ form }}
     <button type="submit" class="btn btn-primary" value="Submit">Enviar</button>
 </form>
-
+{% endblock %}

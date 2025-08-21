@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="{% static 'schedules/styles.css' %}">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'schedules:calendar' %}">Calendário</a></li>
+            <li><a href="{% url 'schedules:contact' %}">Contato</a></li>
+        </ul>
+    </nav>
     <div class="container">
         {% block content %}
         {% endblock %}

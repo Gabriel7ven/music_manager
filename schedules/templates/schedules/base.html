@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário</title>
     <link rel="stylesheet" href="{% static 'schedules/styles.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'schedules:calendar' %}">Calendário</a></li>
-            <li><a href="{% url 'schedules:contact' %}">Contato</a></li>
-        </ul>
-    </nav>
+    <ul class="nav bg-info">
+        <li class="nav-item">
+        <a class="nav-link link-light" href="{% url 'schedules:calendar' %}">HOME</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link link-light" href="{% url 'schedules:contact' %}">CONTATO</a>
+        </li>
+    </ul>
     <div class="container">
         {% block content %}
         {% endblock %}

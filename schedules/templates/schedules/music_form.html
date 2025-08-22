@@ -2,28 +2,32 @@
 
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit" class="btn btn-primary" value="Submit">Adicionar</button>
-</form>
+    <div class="add-music-form-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-primary" value="Submit">Adicionar</button>
+        </form>
 
 
+        <div class="music-list">
 
-{% for music in musics %}
-    <div class="music-item">
-        <strong>{{ music.get_moment_name }}</strong> -
-        {{ music.music_name }} |
-        {{ music.reference }} 
-        {% if music.number > 0 %}
-         n° 
-        {{ music.number }}
-        {% endif %}
-        <a href="{% url 'schedules:update' music.id %}">✏️ Alterar</a>
-        <a href="{% url 'schedules:delete_music' music.id %}">❌ Deletar</a>
+            {% for music in musics %}
+                <div class="music-item">
+                    <strong>{{ music.get_moment_name }}</strong> -
+                    {{ music.music_name }} |
+                    {{ music.reference }} 
+                    {% if music.number > 0 %}
+                    n° 
+                    {{ music.number }}
+                    {% endif %}
+                    <a href="{% url 'schedules:update' music.id %}">✏️ Alterar</a>
+                    <a href="{% url 'schedules:delete_music' music.id %}">❌ Deletar</a>
 
+                </div>
+            {% empty %}
+                <div>Nenhuma música cadastrada para este dia.</div>
+            {% endfor %}
+        </div>
     </div>
-{% empty %}
-    <div>Nenhuma música cadastrada para este dia.</div>
-{% endfor %}
 {% endblock %}

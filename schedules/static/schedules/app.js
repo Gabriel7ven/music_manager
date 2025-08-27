@@ -30,6 +30,6 @@ function copiarCronograma() {
     }
     console.log(musicItem);
     navigator.clipboard.writeText(musicItem);
-    btnCopiarCronograma.style.backgroundColor = 'lightgreen';
-
+    // btnCopiarCronograma.style.backgroundColor = 'lightgreen';
+    alert("Texto copiado com sucesso!");
 }

@@ -33,3 +33,14 @@ function copiarCronograma() {
     // btnCopiarCronograma.style.backgroundColor = 'lightgreen';
     alert("Texto copiado com sucesso!");
 }
+
+// const btnDelete = document.getElementById("update");
+
+// btnDelete.addEventListener('click', askDelete);
+
+// function askDelete(){
+
+
+
+// }
+

@@ -6,14 +6,14 @@
         <form method="post">
             {% csrf_token %}
             {{ form }}
-            <button type="submit" class="btn btn-primary" value="Submit">Adicionar</button>
+            <button type="submit" class="btn btn-primary" value="Submit" id="adicionar">Adicionar</button>
         </form>
 
 
         <div class="music-list">
             {% for music in musics %}
                 <div class="music-item">
-                    <span class="moment-name">{{ music.get_moment_name }}</span> -
+                    <span class="moment-name"><strong>{{ music.get_moment_name }}</strong></span> -
                     <span class="music-name">{{ music.music_name }}</span> |
                     <span class="music-reference">{{ music.reference }}</span> 
                     {% if music.number > 0 %}
@@ -21,14 +21,16 @@
                     {% else %}
                     <span class="music-number"></span>
                     {% endif %}
-                    <a href="{% url 'schedules:update' music.id %}">✏️ Alterar</a>
-                    <a href="{% url 'schedules:delete_music' music.id %}">❌ Deletar</a>
-
+                    <a href="{% url 'schedules:update' music.id %}" class="btn btn-warning update" id="update">Alterar</a>
+                    <a href="{% url 'schedules:delete_music' music.id %}" class="btn btn-danger" id="delete" onclick="return confirm('Tem certeza que deseja excluir esta música?');">Deletar</a>
+                    
+                    <hr>
+                    
                 </div>
             {% empty %}
                 <div>Nenhuma música cadastrada para este dia.</div>
             {% endfor %}
-            <button id="copiar-cronograma">Copiar Cronograma</button>
+            <button class="btn btn-secondary" id="copiar-cronograma">Copiar Cronograma</button>
         </div>
     </div>
 {% endblock %}

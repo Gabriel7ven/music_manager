@@ -6,19 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário</title>
     <link rel="stylesheet" href="{% static 'schedules/styles.css' %}">
-    {% load bootstrap5 %}
+    {% load django_bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+
+    <script>
+        // Força recarregamento completo da página ao voltar com navegador
+        window.onpageshow = function(event) {
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                window.location.reload();
+            }
+        };
+
+        // Alternativa mais compatível
+        if (performance.navigation.type === 2) {
+            // Navigation type 2 significa que a página foi acessada via botão voltar
+            window.location.reload();
+        }
+    </script>
 </head>
 <body>
-    <ul class="nav bg-info">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
         <li class="nav-item">
-        <a class="nav-link link-light" href="{% url 'schedules:calendar' %}">HOME</a>
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Opções
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'schedules:calendar' %}">Músicas</a></li>
+          </ul>
         </li>
         <li class="nav-item">
-        <a class="nav-link link-light" href="{% url 'schedules:contact' %}">CONTATO</a>
+          <a class="nav-link" href="{% url 'schedules:contact' %}">Contato</a>
         </li>
-    </ul>
+      </ul>
+    </div>
+  </div>
+</nav>
+
     <div class="container">
         {% block content %}
         {% endblock %}

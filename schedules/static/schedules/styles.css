@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -76,7 +76,7 @@ table a {
 form {
     display: flex;
     flex-direction: column;
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -97,6 +97,36 @@ form {
     padding: 20px;
 }
 
+
 .day {
     color: #000;
 }
+
+/* .btn-update {
+    padding: 5px 10px;
+    background-color: #e7bc6d;
+    border-radius: 5px;
+    text-decoration: none;
+    color:#000;
+    margin: 10px;
+} */
+ #update {
+    margin-left: 20px;
+    margin-right: 7px;
+ }
+
+/* .btn-delete {
+    padding: 5px 10px;
+    background-color: #ec3131;
+    border-radius: 5px;
+    text-decoration: none;
+    color:#ffffff;
+} */
+
+ #adicionar{
+    margin: 10px 0;
+ }
+
+ input {
+    margin-bottom: 10px;
+ }

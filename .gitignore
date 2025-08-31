@@ -22,7 +22,7 @@ Pipfile.lock
 poetry.lock
 
 # Banco de dados
-*.sqlite3
+# *.sqlite3
 *.db
 *.sql
 *.mdb
@@ -34,8 +34,8 @@ logs/
 *.pot
 
 # Arquivos estáticos coletados
-staticfiles/
-mediafiles/
+# staticfiles/
+# mediafiles/
 
 # Arquivos de IDE
 .vscode/

@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 import datetime
 import calendar
 from django.http import HttpResponseRedirect, HttpResponse
@@ -117,13 +118,14 @@ def get_music(request, year, month, day):
             musics_of_day = Music.objects.filter(sing_date=sing_date)
             form = MusicForm()
             
-            return render(request, 'schedules/music_form.html', {
-                'form': form, 
-                'musics': musics_of_day,
-                'day': day,
-                'month': month,
-                'year': year
-            }) 
+            # return render(request, 'schedules/music_form.html', {
+            #     'form': form, 
+            #     'musics': musics_of_day,
+            #     'day': day,
+            #     'month': month,
+            #     'year': year
+            # }) 
+            return redirect('schedules:music', year=year, month=month, day=day)  # Redireciona
         else:
             return HttpResponse('Erro ao salvar objeto no banco de dados')
     else:
@@ -149,7 +151,7 @@ def update(request, music_id):
             music.number = form.cleaned_data['number']
             music.moment = form.cleaned_data['moment'].upper()
             music.save()
-            return HttpResponseRedirect(f"/schedules/music/{music.sing_date.year}/{music.sing_date.month}/{music.sing_date.day}")
+            return redirect('schedules:music', year=music.sing_date.year, month= music.sing_date.month, day=music.sing_date.day)
         
     else:
         data = {
